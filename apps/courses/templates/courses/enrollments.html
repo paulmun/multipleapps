@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Courses PT2</title>
+</head>
+<body>
+	<form action="{% url 'courses:enrollments' %}" method="post">
+		{% csrf_token %}
+		<select name="student">
+			<option value="" disabled selected>User</option>
+			{% for user in users %}
+				<option value="{{user.id}}">{{user.name}}</option>
+			{% endfor %}
+		</select>
+		<select name="classroom">
+			<option value="" disabled selected>Course</option>
+			{% for course in courses %}
+				<option value="{{course.id}}">{{course.name}}</option>
+			{% endfor %}
+		</select>
+		<input type="submit" value="Add User To Course">
+	</form>
+</body>
+</html>
