@@ -31,7 +31,7 @@
 						<td>{{course.name}}</td>
 						<td>{{course.description}}</td>
 						<td>{{course.created_at}}</td>
-						<td><a href="{% url 'courses:destroycourse' id=course.id %}">Remove</a></td>
+						<td><a href="{% url 'destroycourse' id=course.id %}">Remove</a></td>
 					</tr>
 				{% endfor %}
 			</tbody>

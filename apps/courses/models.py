@@ -4,6 +4,22 @@ from ..logreg.models import Users
 
 # Create your models here.
 class EnrollmentsManager(models.Manager):
+	def checkenroll(self, **kwargs):
+		errors = {}
+		student = kwargs['user']
+		classroom = kwargs['classroom']
+
+		if not kwargs['user']:
+			errors['student'] = 'Please select a User!'
+		elif not kwargs['classroom']:
+			errors['classroom'] = 'Please select a Course!'
+		else:
+			row = self.get(id=classroom)
+			user = Users.objects.get(id=student)
+			row.user_id.add(user)
+			return (True, 'Student has been enrolled!')
+		return (False, errors)
+
 	def register(self, **kwargs):
 		errors = {}
 		student = kwargs['student']

@@ -13,7 +13,7 @@ def register(request):
 	email = request.POST['email']
 	newUser = models.Users.objects.register(fname=fname, lname=lname, email=email, password=request.POST['pass'], cpassword=request.POST['cPass'])
 	if newUser[0]:
-		return redirect('index')
+		return redirect('logreg:index')
 	else:
 		context = {'errors':newUser[1], 'fname':fname, 'lname':lname, 'email':email}
 		return render(request, 'logreg/index.html', context)
